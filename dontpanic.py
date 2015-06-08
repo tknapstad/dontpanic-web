@@ -13,6 +13,6 @@ def get_oblique_strategy():
 	testquote = "You have reached the end of the universe"
 	return template('{{quote}}', quote=testquote)
 
-#run(host='10.25.1.20', port=8080, debug=True)
-run(server='cherrypy', host='10.25.1.20', port=8080)
+#run(server='cherrypy', host='10.25.1.20', port=8080)
+run(server='cherrypy', host='localhost', port=8080)
 
