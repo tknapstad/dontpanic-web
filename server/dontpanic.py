@@ -1,4 +1,9 @@
-from bottle import route, get, run, template, static_file, error
+import bottle
+from bottle import route, get, post, request, run, template, static_file, error
+
+from pprint import pprint
+
+bottle.debug(True)
 
 # Static Routes
 @get("/css/<filepath:re:.*\.css>")
@@ -17,9 +22,16 @@ def img(filepath):
 def js(filepath):
     return static_file(filepath, root="../client/static/js")
 
-@route('/')
+@get('/')
 def root():
-        return static_file('index.html', root='../client/static')
+    return static_file('index.html', root='../client/static')
+
+@post('/')
+def root():
+    print "Wisdom: ", request.forms.get("wisdom")
+    print "URL: ", request.forms.get("url")
+
+    return static_file('confirmed.html', root='../client/static')
 
 @route('/dontpanic/oblique')
 def get_oblique_strategy():
